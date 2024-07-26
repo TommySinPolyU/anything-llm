@@ -208,7 +208,9 @@ const TRANSLATIONS = {
         "La puntuación mínima de similitud requerida para que una fuente se considere relacionada con el chat. Cuanto mayor sea el número, más similar debe ser la fuente al chat.",
       zero: "Sin restricción",
       low: "Bajo (puntuación de similitud ≥ .25)",
-      medium: "Medio (puntuación de similitud ≥ .50)",
+      low_medium: "Low Medium（≥ .35）",
+      medium: "Medium（≥ .50）",
+      medium_high: "Medium-High（≥ .60）",
       high: "Alto (puntuación de similitud ≥ .75)",
     },
     reset: {

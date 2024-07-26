@@ -24,7 +24,9 @@ export default function DocumentSimilarityThreshold({
       >
         <option value={0.0}>{t("vector-workspace.doc.zero")}</option>
         <option value={0.25}>{t("vector-workspace.doc.low")}</option>
+        <option value={0.35}>{t("vector-workspace.doc.low_medium")}</option>
         <option value={0.5}>{t("vector-workspace.doc.medium")}</option>
+        <option value={0.6}>{t("vector-workspace.doc.medium_high")}</option>
         <option value={0.75}>{t("vector-workspace.doc.high")}</option>
       </select>
     </div>

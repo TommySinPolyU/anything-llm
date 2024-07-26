@@ -206,7 +206,9 @@ const TRANSLATIONS = {
         "채팅과 관련이 있다고 판단되는 문서의 유사성 점수입니다. 숫자가 높을수록 질문에 대한 문서의 내용이 유사합니다.",
       zero: "제한 없음",
       low: "낮음 (유사성 점수 ≥ .25)",
-      medium: "중간 (유사성 점수 ≥ .50)",
+      low_medium: "Low Medium（≥ .35）",
+      medium: "Medium（≥ .50）",
+      medium_high: "Medium-High（≥ .60）",
       high: "높음 (유사성 점수 ≥ .75)",
     },
     reset: {

@@ -212,7 +212,9 @@ const TRANSLATIONS = {
         "The minimum similarity score required for a source to be considered related to the chat. The higher the number, the more similar the source must be to the chat.",
       zero: "No restriction",
       low: "Low (similarity score ≥ .25)",
-      medium: "Medium (similarity score ≥ .50)",
+      low_medium: "Low Medium（≥ .35）",
+      medium: "Medium（≥ .50）",
+      medium_high: "Medium-High（≥ .60）",
       high: "High (similarity score ≥ .75)",
     },
     reset: {

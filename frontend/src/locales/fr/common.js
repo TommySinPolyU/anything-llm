@@ -215,7 +215,9 @@ const TRANSLATIONS = {
         "Le score de similarité minimum requis pour qu'une source soit considérée comme liée au chat. Plus le nombre est élevé, plus la source doit être similaire au chat.",
       zero: "Aucune restriction",
       low: "Bas (score de similarité ≥ .25)",
-      medium: "Moyen (score de similarité ≥ .50)",
+      low_medium: "Low Medium（≥ .35）",
+      medium: "Medium（≥ .50）",
+      medium_high: "Medium-High（≥ .60）",
       high: "Élevé (score de similarité ≥ .75)",
     },
     reset: {
