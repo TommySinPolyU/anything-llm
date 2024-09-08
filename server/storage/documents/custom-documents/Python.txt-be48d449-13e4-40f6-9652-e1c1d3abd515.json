@@ -1,0 +1,13 @@
+{
+    "id": "be48d449-13e4-40f6-9652-e1c1d3abd515",
+    "url": "file://C:\\Users\\Tommy Sin\\AppData\\Roaming\\anythingllm-desktop\\storage\\hotdir\\為什麼要學Python而非其他程式語言.txt",
+    "title": "為什麼要學Python而非其他程式語言.txt",
+    "docAuthor": "Unknown",
+    "description": "Unknown",
+    "docSource": "a text file uploaded by the user.",
+    "chunkSource": "localfile://C:\\Users\\Tommy Sin\\Documents\\AI Agents\\llm_qa\\為什麼要學Python而非其他程式語言.txt",
+    "published": "2024/9/8 下午12:08:20",
+    "wordCount": 11,
+    "pageContent": "簡單易學: Python 的語法簡單明瞭,非常接近自然語言,對於初學者來說學習曲線較其他語言更加平緩。[1][3]\r\n龐大的社群支持: Python 擁有一個非常活躍和支持性的社群,無論是初學者還是專家,都能在社群中找到所需的幫助和資源。[2][3]\r\n多功能性: Python 可以用於Web開發、數據分析、機器學習、人工智能等多個領域,是一種通用的程式語言。[2][3]\r\n可靠性和速度: Python 被認為是一種可靠和高效的程式語言,在大多數應用場景中都能提供良好的性能。[2]\r\n適用於大數據、機器學習和雲端運算: Python 在這些熱門領域中有著廣泛的應用,是數據科學和分析的首選工具。[2]",
+    "token_count_estimate": 356
+}

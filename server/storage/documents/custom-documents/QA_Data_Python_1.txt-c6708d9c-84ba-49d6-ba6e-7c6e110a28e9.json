@@ -1,0 +1,13 @@
+{
+    "id": "c6708d9c-84ba-49d6-ba6e-7c6e110a28e9",
+    "url": "file://C:\\Users\\Tommy Sin\\AppData\\Roaming\\anythingllm-desktop\\storage\\hotdir\\QA_Data_Python_1.txt",
+    "title": "QA_Data_Python_1.txt",
+    "docAuthor": "Unknown",
+    "description": "Unknown",
+    "docSource": "a text file uploaded by the user.",
+    "chunkSource": "localfile://C:\\Users\\Tommy Sin\\Documents\\AI Agents\\llm_qa\\QA_Data_Python_1.txt",
+    "published": "2024/9/8 上午11:52:45",
+    "wordCount": 18,
+    "pageContent": "Question: 甚麼是Python?\r\nAnswer: Python，是一種廣泛使用的直譯式、進階和通用的程式語言。Python支援多種程式設計範式，包括結構化、程序式、反射式、物件導向和函數式程式設計。它擁有動態型別系統和垃圾回收功能，能夠自動管理主記憶體使用，並且其本身擁有一個巨大而廣泛的標準庫。\r\n\r\nQuestion: Python現時的最新版本是甚麼?\r\nAnswer:3.12.6 (2024年9月7日；穩定版本)\r\n\r\nQuestion: Python 主要用來開發甚麼程式?\r\nAnswer: Web 開發、資料科學與機器學習、自動化與腳本、科學計算、人工智能及大數據、遊戲開發、網路爬蟲等\r\n\r\nQuestion: 如果我想自學Python，網上有甚麼資源?\r\nAnswer: 你可以到以下網站尋找教程：Learn Python (https://www.learnpython.org/), FreeCodeCamp (https://www.freecodecamp.org/), W3School (https://www.w3schools.com/python/) 等。",
+    "token_count_estimate": 386
+}
