@@ -7,7 +7,6 @@ storage/tmp/*
 storage/vector-cache/*.json
 storage/exports
 storage/imports
-!storage/documents/DOCUMENTS.md
 logs/server.log
 *.db
 *.db-journal
