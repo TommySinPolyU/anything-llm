@@ -31,11 +31,11 @@ function apiDocumentEndpoints(app) {
     #swagger.requestBody = {
       description: 'File to be uploaded.',
       required: true,
-      type: 'file',
       content: {
         "multipart/form-data": {
           schema: {
-            type: 'object',
+            type: 'string',
+            format: 'binary',
             properties: {
               file: {
                 type: 'string',
@@ -131,13 +131,12 @@ function apiDocumentEndpoints(app) {
     #swagger.requestBody = {
       description: 'Link of web address to be scraped.',
       required: true,
-      type: 'object',
       content: {
           "application/json": {
             schema: {
               type: 'object',
               example: {
-                "link": "https://useanything.com"
+                "link": "https://anythingllm.com"
               }
             }
           }
@@ -159,7 +158,7 @@ function apiDocumentEndpoints(app) {
                   "docAuthor": "no author found",
                   "description": "No description found.",
                   "docSource": "URL link uploaded by the user.",
-                  "chunkSource": "https:useanything.com.html",
+                  "chunkSource": "https:anythingllm.com.html",
                   "published": "1/16/2024, 3:46:33 PM",
                   "wordCount": 252,
                   "pageContent": "AnythingLLM is the best....",
@@ -229,7 +228,6 @@ function apiDocumentEndpoints(app) {
      #swagger.requestBody = {
       description: 'Text content and metadata of the file to be saved to the system. Use metadata-schema endpoint to get the possible metadata keys',
       required: true,
-      type: 'object',
       content: {
         "application/json": {
           schema: {
@@ -237,6 +235,7 @@ function apiDocumentEndpoints(app) {
             example: {
               "textContent": "This is the raw text that will be saved as a document in AnythingLLM.",
               "metadata": {
+                "title": "This key is required. See in /server/endpoints/api/document/index.js:287",
                 keyOne: "valueOne",
                 keyTwo: "valueTwo",
                 etc: "etc"
@@ -570,11 +569,10 @@ function apiDocumentEndpoints(app) {
       #swagger.requestBody = {
         description: 'Name of the folder to create.',
         required: true,
-        type: 'object',
         content: {
           "application/json": {
             schema: {
-              type: 'object',
+              type: 'string',
               example: {
                 "name": "new-folder"
               }
@@ -637,7 +635,6 @@ function apiDocumentEndpoints(app) {
       #swagger.requestBody = {
         description: 'Array of objects containing source and destination paths of files to move.',
         required: true,
-        type: 'object',
         content: {
           "application/json": {
             schema: {
@@ -685,6 +682,12 @@ function apiDocumentEndpoints(app) {
           const sourcePath = path.join(documentsPath, normalizePath(from));
           const destinationPath = path.join(documentsPath, normalizePath(to));
           return new Promise((resolve, reject) => {
+            if (
+              !isWithin(documentsPath, sourcePath) ||
+              !isWithin(documentsPath, destinationPath)
+            )
+              return reject("Invalid file location");
+
             fs.rename(sourcePath, destinationPath, (err) => {
               if (err) {
                 console.error(`Error moving file ${from} to ${to}:`, err);

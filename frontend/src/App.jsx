@@ -49,6 +49,9 @@ const GeneralVectorDatabase = lazy(
   () => import("@/pages/GeneralSettings/VectorDatabase")
 );
 const GeneralSecurity = lazy(() => import("@/pages/GeneralSettings/Security"));
+const GeneralBrowserExtension = lazy(
+  () => import("@/pages/GeneralSettings/BrowserExtensionApiKey")
+);
 const WorkspaceSettings = lazy(() => import("@/pages/WorkspaceSettings"));
 const EmbedConfigSetup = lazy(
   () => import("@/pages/GeneralSettings/EmbedConfigs")
@@ -63,6 +66,7 @@ const ExperimentalFeatures = lazy(
 const LiveDocumentSyncManage = lazy(
   () => import("@/pages/Admin/ExperimentalFeatures/Features/LiveSync/manage")
 );
+const FineTuningWalkthrough = lazy(() => import("@/pages/FineTuning"));
 
 export default function App() {
   return (
@@ -157,6 +161,10 @@ export default function App() {
                   element={<AdminRoute Component={GeneralApiKeys} />}
                 />
                 <Route
+                  path="/settings/browser-extension"
+                  element={<ManagerRoute Component={GeneralBrowserExtension} />}
+                />
+                <Route
                   path="/settings/workspace-chats"
                   element={<ManagerRoute Component={GeneralChats} />}
                 />
@@ -185,6 +193,11 @@ export default function App() {
                 <Route
                   path="/settings/beta-features/live-document-sync/manage"
                   element={<AdminRoute Component={LiveDocumentSyncManage} />}
+                />
+
+                <Route
+                  path="/fine-tuning"
+                  element={<AdminRoute Component={FineTuningWalkthrough} />}
                 />
               </Routes>
               <ToastContainer />

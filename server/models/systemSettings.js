@@ -6,6 +6,7 @@ const { default: slugify } = require("slugify");
 const { isValidUrl, safeJsonParse } = require("../utils/http");
 const prisma = require("../utils/prisma");
 const { v4 } = require("uuid");
+const { MetaGenerator } = require("../utils/boot/MetaGenerator");
 
 function isNullOrNaN(value) {
   if (value === null) return true;
@@ -21,12 +22,17 @@ const SystemSettings = {
     "telemetry_id",
     "footer_data",
     "support_email",
+
     "text_splitter_chunk_size",
     "text_splitter_chunk_overlap",
     "agent_search_provider",
     "default_agent_skills",
     "agent_sql_connections",
     "custom_app_name",
+
+    // Meta page customization
+    "meta_page_title",
+    "meta_page_favicon",
 
     // beta feature flags
     "experimental_live_file_sync",
@@ -75,6 +81,7 @@ const SystemSettings = {
         if (
           ![
             "google-search-engine",
+            "searchapi",
             "serper-dot-dev",
             "bing-search",
             "serply-engine",
@@ -121,6 +128,27 @@ const SystemSettings = {
         return update === true ? "enabled" : "disabled";
       if (!["enabled", "disabled"].includes(update)) return "disabled";
       return String(update);
+    },
+    meta_page_title: (newTitle) => {
+      try {
+        if (typeof newTitle !== "string" || !newTitle) return null;
+        return String(newTitle);
+      } catch {
+        return null;
+      } finally {
+        new MetaGenerator().clearConfig();
+      }
+    },
+    meta_page_favicon: (faviconUrl) => {
+      if (!faviconUrl) return null;
+      try {
+        const url = new URL(faviconUrl);
+        return url.toString();
+      } catch {
+        return null;
+      } finally {
+        new MetaGenerator().clearConfig();
+      }
     },
   },
   currentSettings: async function () {
@@ -182,12 +210,17 @@ const SystemSettings = {
       // Eleven Labs TTS
       TTSElevenLabsKey: !!process.env.TTS_ELEVEN_LABS_KEY,
       TTSElevenLabsVoiceModel: process.env.TTS_ELEVEN_LABS_VOICE_MODEL,
+      // Piper TTS
+      TTSPiperTTSVoiceModel:
+        process.env.TTS_PIPER_VOICE_MODEL ?? "en_US-hfc_female-medium",
 
       // --------------------------------------------------------
       // Agent Settings & Configs
       // --------------------------------------------------------
       AgentGoogleSearchEngineId: process.env.AGENT_GSE_CTX || null,
       AgentGoogleSearchEngineKey: !!process.env.AGENT_GSE_KEY || null,
+      AgentSearchApiKey: !!process.env.AGENT_SEARCHAPI_API_KEY || null,
+      AgentSearchApiEngine: process.env.AGENT_SEARCHAPI_ENGINE || "google",
       AgentSerperApiKey: !!process.env.AGENT_SERPER_DEV_KEY || null,
       AgentBingSearchApiKey: !!process.env.AGENT_BING_SEARCH_API_KEY || null,
       AgentSerplyApiKey: !!process.env.AGENT_SERPLY_API_KEY || null,
@@ -384,6 +417,8 @@ const SystemSettings = {
       OllamaLLMBasePath: process.env.OLLAMA_BASE_PATH,
       OllamaLLMModelPref: process.env.OLLAMA_MODEL_PREF,
       OllamaLLMTokenLimit: process.env.OLLAMA_MODEL_TOKEN_LIMIT,
+      OllamaLLMKeepAliveSeconds: process.env.OLLAMA_KEEP_ALIVE_TIMEOUT ?? 300,
+      OllamaLLMPerformanceMode: process.env.OLLAMA_PERFORMANCE_MODE ?? "base",
 
       // TogetherAI Keys
       TogetherAiApiKey: !!process.env.TOGETHER_AI_API_KEY,
@@ -396,6 +431,7 @@ const SystemSettings = {
       // OpenRouter Keys
       OpenRouterApiKey: !!process.env.OPENROUTER_API_KEY,
       OpenRouterModelPref: process.env.OPENROUTER_MODEL_PREF,
+      OpenRouterTimeout: process.env.OPENROUTER_TIMEOUT_MS,
 
       // Mistral AI (API) Keys
       MistralApiKey: !!process.env.MISTRAL_API_KEY,
@@ -436,6 +472,12 @@ const SystemSettings = {
       GenericOpenAiTokenLimit: process.env.GENERIC_OPEN_AI_MODEL_TOKEN_LIMIT,
       GenericOpenAiKey: !!process.env.GENERIC_OPEN_AI_API_KEY,
       GenericOpenAiMaxTokens: process.env.GENERIC_OPEN_AI_MAX_TOKENS,
+
+      AwsBedrockLLMAccessKeyId: !!process.env.AWS_BEDROCK_LLM_ACCESS_KEY_ID,
+      AwsBedrockLLMAccessKey: !!process.env.AWS_BEDROCK_LLM_ACCESS_KEY,
+      AwsBedrockLLMRegion: process.env.AWS_BEDROCK_LLM_REGION,
+      AwsBedrockLLMModel: process.env.AWS_BEDROCK_LLM_MODEL_PREFERENCE,
+      AwsBedrockLLMTokenLimit: process.env.AWS_BEDROCK_LLM_MODEL_TOKEN_LIMIT,
 
       // Cohere API Keys
       CohereApiKey: !!process.env.COHERE_API_KEY,
